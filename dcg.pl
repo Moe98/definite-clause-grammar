@@ -1,3 +1,54 @@
+s(s(NP, Period)) --> noun_phrase(NP), period(Period).
+s(s(VP, Period)) --> verb_phrase(VP), period(Period).
+s(s(QP, QuestionMark)) --> question_phrase(QP), question_mark(QuestionMark).
+s(s(FirstSentence, Conjunctive, SecondSentence)) --> first_sentence(FirstSentence), conjunctive(Conjunctive), s(SecondSentence).
+
+first_sentence(NP) --> noun_phrase(NP).
+first_sentence(VP) --> verb_phrase(VP).
+
+%%%%%%%%% Noun Phrases %%%%%%%%%
+noun_phrase(noun_phrase(Noun)) --> noun(Noun).
+noun_phrase(noun_phrase(Noun, VerbPhrase)) --> noun(Noun), verb_phrase(VerbPhrase).
+noun_phrase(noun_phrase(Noun, NP)) --> noun(Noun), noun_phrase(NP).
+noun_phrase(noun_phrase(AdjectivePhrase, NP)) --> adjective_phrase(AdjectivePhrase), noun_phrase(NP).
+noun_phrase(noun_phrase(DeterminerPhrase, NP)) --> determiner_phrase(DeterminerPhrase), noun_phrase(NP).
+noun_phrase(noun_phrase(PrepositionPhrase, NP)) --> preposition_phrase(PrepositionPhrase), noun_phrase(NP).
+noun_phrase(noun_phrase(DeterminerPhrase, AdjectivePhrase, Noun, PrepositionPhrase, NP)) --> determiner_phrase(DeterminerPhrase), adjective_phrase(AdjectivePhrase), noun(Noun), preposition_phrase(PrepositionPhrase), noun_phrase(NP).
+noun_phrase(noun_phrase(DeterminerPhrase, Noun, VerbPhrase)) --> determiner_phrase(DeterminerPhrase), noun(Noun), verb_phrase(VerbPhrase).
+noun_phrase(noun_phrase(DeterminerPhrase, AdjectivePhrase, NP, VerbPhrase)) --> determiner_phrase(DeterminerPhrase), adjective_phrase(AdjectivePhrase), noun_phrase(NP), verb_phrase(VerbPhrase).
+%%%%%%%%% Noun Phrases %%%%%%%%%
+
+%%%%%%%%% Verb Phrases %%%%%%%%%
+verb_phrase(verb_phrase(Verb)) --> verb(Verb).
+verb_phrase(verb_phrase(Verb, VerbPhrase)) --> verb(Verb), verb_phrase(VerbPhrase).
+verb_phrase(verb_phrase(Verb, NP)) --> verb(Verb), noun_phrase(NP).
+verb_phrase(verb_phrase(AdverbPhrase, VerbPhrase)) --> adverb_phrase(AdverbPhrase), verb_phrase(VerbPhrase).
+%%%%%%%%% Verb Phrases %%%%%%%%%
+
+%%%%%%%%% Adjective Phrases %%%%%%%%%
+adjective_phrase(adjective_phrase(Adjective)) --> adjective(Adjective).
+adjective_phrase(adjective(Adjective, AdjectivePhrase)) --> adjective(Adjective), adjective_phrase(AdjectivePhrase).
+%%%%%%%%% Adjective Phrases %%%%%%%%%
+
+%%%%%%%%% Adverb Phrases %%%%%%%%%
+adverb_phrase(adverb_phrase(Adverb)) --> adverb(Adverb).
+adverb_phrase(adverb_phrase(Adverb, AdverbPhrase)) --> adverb(Adverb), adverb_phrase(AdverbPhrase).
+%%%%%%%%% Adverb Phrases %%%%%%%%%
+
+%%%%%%%%% Preposition Phrases %%%%%%%%%
+preposition_phrase(preposition_phrase(Preposition)) --> preposition(Preposition).
+preposition_phrase(preposition_phrase(Preposition, PrepositionPhrase)) --> preposition(Preposition), preposition_phrase(PrepositionPhrase).
+%%%%%%%%% Determiner Phrases %%%%%%%%%
+
+%%%%%%%%% Determiner Phrases %%%%%%%%%
+determiner_phrase(determiner_phrase(Determiner)) --> determiner(Determiner).
+determiner_phrase(determiner_phrase(Determiner, DeterminerPhrase)) --> determiner(Determiner), determiner_phrase(DeterminerPhrase).
+%%%%%%%%% Determiner Phrases %%%%%%%%%
+
+%%%%%%%%% Question Phrases %%%%%%%%%
+question_phrase(question_phrase(Pronoun, VP)) --> pronoun(Pronoun), verb_phrase(VP).
+%%%%%%%%% Question Phrases %%%%%%%%%
+
 %%%%%%%%% Nouns %%%%%%%%%
 noun(noun(boy)) --> [boy].
 noun(noun(box)) --> [box].
@@ -64,3 +115,12 @@ determiner(determiner(many)) --> [many].
 pronoun(pronoun(who)) --> [who].
 pronoun(pronoun(what)) --> [what].
 %%%%%%%%% Interrogative Pronouns %%%%%%%%%
+
+%%%%%%%%% Conjunctives %%%%%%%%%
+conjunctive(conjunctive(and)) --> [and].
+conjunctive(conjunctive(but)) --> [but].
+conjunctive(conjunctive(yet)) --> [yet].
+%%%%%%%%% Conjunctives %%%%%%%%%
+
+period(.) --> [.].
+question_mark(?) --> [?].
